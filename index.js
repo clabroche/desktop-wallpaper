@@ -1,4 +1,5 @@
 const electron = require('electron')
+
 const pathfs = require('path')
 const fse = require('fs-extra')
 const helpers = require('./src/helpers')
@@ -49,6 +50,15 @@ async function createWindow() {
   mainWindow.on('closed', function () {
     mainWindow = null
   })
+
+  electron.ipcMain.on('fullscreen', (event, arg) => {
+    const size = mainWindow.getSize();
+    if (screen.width === size[0] + 1 && screen.height === size[1] + 1) {
+      mainWindow.setSize(sizePosition.width, sizePosition.height);
+      mainWindow.setPosition(sizePosition.x, sizePosition.y);
+    } else mainWindow.setSize(screen.width, screen.height);
+  })
+
 }
 
 if (!config.window.hide) {
