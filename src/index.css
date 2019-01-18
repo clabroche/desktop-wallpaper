@@ -1,0 +1,33 @@
+body {
+      margin: 0
+    }
+    img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute
+    }
+    .remove{
+      animation-name: remove;
+      animation-duration: 1000ms
+    }
+    .insert{
+      animation-name: insert;
+      animation-duration: 1000ms
+    }
+    @keyframes remove {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    @keyframes insert {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }

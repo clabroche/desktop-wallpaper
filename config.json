@@ -1,0 +1,13 @@
+{
+  "collections": [
+    "880012"
+  ],
+  "resolution": "1920x1080",
+  "window": {
+    "width": 300,
+    "height": 150,
+    "fullscreen": false,
+    "hide": false
+  },
+  "interval": "5000"
+}
