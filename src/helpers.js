@@ -1,12 +1,12 @@
 const { exec } = require('child_process')
 const pathfs = require('path')
 const fse = require('fs-extra')
-const config = require('../config.json')
 
 const helpers = {
   imgPath: pathfs.resolve(__dirname, '..', '..', 'img'),
+  configPath: pathfs.resolve(__dirname, '..', 'config.json'),
   trigger: function () {
-    const resolution = fse.readJsonSync('./config.json').resolution
+    const resolution = fse.readJsonSync(pathfs.resolve(__dirname, '..', 'config.json')).resolution
     const body = document.querySelector('body')
     const img = document.querySelector('img')
     img.classList.add('remove')

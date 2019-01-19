@@ -71,7 +71,7 @@ async function createWindow() {
   })
 
   electron.ipcMain.on('reloadSize', (event, arg) => {
-    const config = fse.readJSONSync('./config.json')
+    const config = fse.readJSONSync(helpers.configPath)
     sizePosition.width = config.window.width || 300
     sizePosition.height = config.window.height || 150
     sizePosition.x = screen.width - sizePosition.width;

@@ -19,6 +19,7 @@
 <script>
 const config = require('../config.json')
 const fse = require('fs-extra')
+const helpers = require('./helpers.js')
 const {ipcRenderer} = require('electron');
 
 const width = document.getElementById('width')
@@ -56,7 +57,7 @@ collections.addEventListener('input', event => {
 })
 
 function saveConfig() {
-  fse.writeJsonSync('./config.json', config)
+  fse.writeJsonSync(helpers.configPath, config)
 }
 </script>
 </html>
