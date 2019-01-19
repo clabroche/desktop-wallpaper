@@ -58,7 +58,26 @@ async function createWindow() {
       mainWindow.setPosition(sizePosition.x, sizePosition.y);
     } else mainWindow.setSize(screen.width, screen.height);
   })
+  electron.ipcMain.on('openSettings', (event, arg) => {
+    const settingWindow = new BrowserWindow({
+      frame: false,
+      webPreferences: {
+        nodeIntegration: true
+      }
+    })
+    if (process.env.NODE_ENV)
+      settingWindow.webContents.openDevTools()
+    settingWindow.loadURL(`file://${__dirname}/src/settings.html`)
+  })
 
+  electron.ipcMain.on('reloadSize', (event, arg) => {
+    const config = fse.readJSONSync('./config.json')
+    sizePosition.width = config.window.width || 300
+    sizePosition.height = config.window.height || 150
+    sizePosition.x = screen.width - sizePosition.width;
+    sizePosition.y = screen.height - sizePosition.height;
+    mainWindow.setSize(+sizePosition.width, +sizePosition.height);
+  })
 }
 
 if (!config.window.hide) {

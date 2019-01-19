@@ -1,5 +1,6 @@
 body {
-  margin: 0
+  margin: 0;
+  overflow: hidden;
 }
 img {
   width: 100vw;
@@ -22,7 +23,16 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width: 100%;
+}
+.top {
+  position: absolute;
+  z-index: 101;
+  height: 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 .button {
   cursor: pointer;

@@ -8,7 +8,9 @@ subject.subscribe(helpers.trigger)
 
 
 
-// Right after the line where you changed the document.location
 function enlarge() {
   ipcRenderer.send('fullscreen')
+}
+function openSettings() {
+  ipcRenderer.send('openSettings')
 }

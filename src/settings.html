@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Settings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <label>Width</label>
+  <input id="width" type="number">
+  <label>Height</label>
+  <input id="height" type="number">
+  <label>Resolution</label>
+  <input id="resolution" type="text">
+</body>
+<script>
+const config = require('../config.json')
+const fse = require('fs-extra')
+const {ipcRenderer} = require('electron');
+
+const width = document.getElementById('width')
+width.value = config.window.width
+width.addEventListener('input', event => {
+  config.window.width = +event.target.value
+  saveConfig()
+  ipcRenderer.send('reloadSize')
+})
+
+const height = document.getElementById('height')
+height.value = config.window.height
+height.addEventListener('input', event => {
+  config.window.height = +event.target.value
+  saveConfig()
+  ipcRenderer.send('reloadSize')
+})
+
+const resolution = document.getElementById('resolution')
+resolution.value = config.resolution
+resolution.addEventListener('input', event => {
+  const split = event.target.value.split('x')
+  if(split.length === 2 && Number.isInteger(+split[0]) && Number.isInteger(+split[1])) {
+    config.resolution = event.target.value
+    saveConfig()
+  }
+})
+
+function saveConfig() {
+  fse.writeJsonSync('./config.json', config)
+}
+</script>
+</html>
