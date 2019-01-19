@@ -13,6 +13,8 @@
   <input id="height" type="number">
   <label>Resolution</label>
   <input id="resolution" type="text">
+  <label>Collections (separator: ,)</label>
+  <input id="collections" type="text">
 </body>
 <script>
 const config = require('../config.json')
@@ -43,6 +45,14 @@ resolution.addEventListener('input', event => {
     config.resolution = event.target.value
     saveConfig()
   }
+})
+
+const collections = document.getElementById('collections')
+collections.value = config.collections.join(',')
+collections.addEventListener('input', event => {
+  const split = event.target.value.split(',')
+  config.collections = split.filter(collection => !Number.isInteger(collection))
+  saveConfig()
 })
 
 function saveConfig() {
