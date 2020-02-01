@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=false
+Exec=deepin-desktop-wallpaper
+Name=Deepin Desktop Wallpaper
+Icon=/path/to/icon
+Comment=
+Path=
+StartupNotify=false
